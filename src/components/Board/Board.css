@@ -1,0 +1,15 @@
+.containers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.container, .Add-a-list {
+  border: 1px solid black;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  width: 8rem;
+}
+
+.Add-a-list {
+  background-color: rgb(126, 139, 255);
+}
