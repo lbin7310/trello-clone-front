@@ -1,3 +1,9 @@
-.boardView {
+
+.Board_Nav {
+  display: flex;
   border-bottom: 1px solid black;
+}
+
+.Board_Home-btn {
+  margin-right: 1rem;
 }
