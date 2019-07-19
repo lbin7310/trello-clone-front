@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
 import HomeBoard from '../components/Home/HomeBoard';
+import { Link } from 'react-router-dom';
 import './HomeView.css'
 
 class HomeView extends Component {
   constructor () {
     super ()
     this.state={
-      boards: []
+      boards: [],
+      userId: 0
     }
   }
 
   async componentDidMount() {
-    await fetch('http://localhost:5000/boards')
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          boards: [...json]
+    const { userName } = this.props.match.params;
+    await fetch(`http://localhost:5000/users?userName=${userName}`)
+      .then(res => res.json())
+      .then(usersJson => {
+        fetch(`http://localhost:5000/boards?userId=${usersJson[0].id}`)
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            boards: [...json],
+            userId: usersJson[0].id
+          })
         })
       }
     );
@@ -29,14 +37,22 @@ class HomeView extends Component {
   }
 
   render() {
-    const { boards } = this.state;
+    const { boards, userId } = this.state;
     const { onSetBoard } = this;
+    const { userName } = this.props.match.params;
     return (
       <div>
         <div className="home_title">
-          HomeView
+          <div className="home_nav homeView">
+            <Link to="/">Users</Link>
+          </div>
         </div>
-        <HomeBoard boards={boards} onSetBoard={onSetBoard}/>
+        <HomeBoard
+          userId={userId}
+          userName={userName}
+          boards={boards}
+          onSetBoard={onSetBoard}
+        />
       </div>
     )
   }
