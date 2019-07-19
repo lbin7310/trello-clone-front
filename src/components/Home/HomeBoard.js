@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import "./HomeBoard.css";
+import { Link } from 'react-router-dom'
 
 class HomeBoard extends Component {
   constructor (props) {
     super (props)
     this.state={
       createBoardToggle: false,
-      newBoardTitle: ''
+      newBoardTitle: '',
+      userId: 0
     }
   }
 
-  onCreateModalToggle = () => {
+  onModalToggle = (e) => {
+    console.log(e.target.id);
     const { createBoardToggle } = this.state;
     this.setState({
       createBoardToggle: !createBoardToggle,
-      newBoardTitle: ''
+      newBoardTitle: '',
+      userId: Number(e.target.id)
     })
   }
 
@@ -25,12 +29,15 @@ class HomeBoard extends Component {
   }
 
   onCreate = (fuc) => {
-    const { newBoardTitle, createBoardToggle } = this.state;
+    const { newBoardTitle,
+            createBoardToggle,
+            userId } = this.state;
     if (newBoardTitle !== ''){
       fetch("http://localhost:5000/boards",{
         method: 'POST',
         body: JSON.stringify({
-          title: newBoardTitle
+          title: newBoardTitle,
+          userId
         }),
         headers: {
           'Content-Type': 'application/json'
@@ -44,24 +51,35 @@ class HomeBoard extends Component {
       newBoardTitle: ''
     })
   }
+
+  onClickBoard = (e) => {
+    console.log(e.target.id)
+  }
   
   render() {
-    const { boards, onSetBoard } = this.props;
+    const { boards, onSetBoard, userName, userId} = this.props;
     const { createBoardToggle, newBoardTitle } = this.state;
-    const { onHandleChange, onCreateModalToggle, onCreate } = this;
+    const { onHandleChange,
+            onModalToggle,
+            onCreate } = this;
     return (
       <div>
         <div>
           <div className="boards">
             {boards.map(board => {
+              const BOARD_ID = board.id;
               return (
-                <div key={board.id} className="board">
-                  {board.title}
-                </div>
+                <Link to={`${userName}/board/${BOARD_ID}`} key={BOARD_ID}
+                    id={BOARD_ID}
+                    className="board"
+                  >
+                    {board.title}
+                </Link>
               )
             })}
             <div className="create-new-board"
-              onClick={onCreateModalToggle}
+              onClick={onModalToggle}
+              id={userId}
             >
               Create new board
             </div>
@@ -70,7 +88,7 @@ class HomeBoard extends Component {
             >
               <div className="modal-content">
                 <span className="close"
-                onClick={onCreateModalToggle}
+                onClick={onModalToggle}
                 >
                   &times;
                 </span>
