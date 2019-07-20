@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card';
+import { API_URL } from '../../config';
 
 class Container extends Component {
   constructor (props) {
@@ -22,7 +23,7 @@ class Container extends Component {
     const { newContainerTitle, containerToggle } = this.state;
     const { boardId } = this.props; 
     if ( newContainerTitle !== '') {
-      fetch("http://localhost:5000/containers", {
+      fetch(`${API_URL}/containers`, {
         method: 'POST',
           body: JSON.stringify({
             title: newContainerTitle,

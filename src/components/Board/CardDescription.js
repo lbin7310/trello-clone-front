@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { API_URL } from '../../config'
 
 class CardDescription extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class CardDescription extends Component {
     const { toggle, description, cardId, containerId} = this.state
     const { onCreateDescription } = this.props 
     if ( description !== '' ) {
-      fetch("http://localhost:5000/description",{
+      fetch(`${API_URL}/description`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -107,7 +108,7 @@ class CardDescription extends Component {
               Write
             </button>
             <div style={{display: toggle ? 'none' : ''}}>
-              <button onClick={onOkToggle} >Ok</button>
+              <button onClick={onOkToggle} >OK</button>
               <button onClick={onCancelToggle}>Cancel</button>
             </div>
           </div>

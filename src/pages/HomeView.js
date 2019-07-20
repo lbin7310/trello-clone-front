@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HomeBoard from '../components/Home/HomeBoard';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../config';
 import './HomeView.css'
 
 class HomeView extends Component {
@@ -14,7 +15,7 @@ class HomeView extends Component {
 
   async componentDidMount() {
     const { userName } = this.props.match.params;
-    await fetch(`http://localhost:5000/users?userName=${userName}`)
+    await fetch(`${API_URL}/users?userName=${userName}`)
       .then(res => res.json())
       .then(usersJson => {
         fetch(`http://localhost:5000/boards?userId=${usersJson[0].id}`)

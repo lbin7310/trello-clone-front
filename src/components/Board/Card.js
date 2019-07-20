@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { API_URL } from '../../config.js'
 import './Card.css';
 
 class Card extends Component {
@@ -13,7 +14,7 @@ class Card extends Component {
   }
   
   async componentDidMount(){
-    await fetch("http://localhost:5000/cards")
+    await fetch(`${API_URL}/cards`)
     .then(res => res.json())
     .then(json => {
       this.setState({
@@ -28,7 +29,7 @@ class Card extends Component {
             cardToggle,
             containerId } = this.state;
     if ( newCardTitle !== '' ) {
-      fetch("http://localhost:5000/cards",{
+      fetch(`${API_URL}/cards`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -71,7 +72,7 @@ class Card extends Component {
       cardId: Number(e.target.id),
       containerId: Number(e.target.className.split(' ')[1])
     }
-    fetch(`http://localhost:5000/description?cardId=${descriptionInfo.cardId}&containerId=${descriptionInfo.containerId}`)
+    fetch(`${API_URL}/description?cardId=${descriptionInfo.cardId}&containerId=${descriptionInfo.containerId}`)
     .then(res => res.json())
     .then(json => {
       const description = json.length === 0 ? {} : json[0].description
@@ -99,6 +100,7 @@ class Card extends Component {
               </div>
             )
           }
+          return '';
         })}
         <div className="card-Add"
           onClick={onCardToggle}

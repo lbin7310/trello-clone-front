@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Board from '../components/Board/Board';
 import CardDescription from '../components/Board/CardDescription';
 import { Link } from 'react-router-dom'
+import { API_URL } from '../config';
 import './BoardView.css';
 
 class BoardView extends Component {
@@ -20,7 +21,7 @@ class BoardView extends Component {
 
   async componentDidMount() {
     const { boardId } = this.state 
-    await fetch(`http://localhost:5000/containers?boardId=${boardId}`)
+    await fetch(`${API_URL}/containers?boardId=${boardId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({

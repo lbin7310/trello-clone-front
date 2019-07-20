@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { API_URL } from '../../config';
 import "./HomeBoard.css";
-import { Link } from 'react-router-dom'
 
 class HomeBoard extends Component {
   constructor (props) {
@@ -33,7 +34,7 @@ class HomeBoard extends Component {
             createBoardToggle,
             userId } = this.state;
     if (newBoardTitle !== ''){
-      fetch("http://localhost:5000/boards",{
+      fetch(`${API_URL}/boards`,{
         method: 'POST',
         body: JSON.stringify({
           title: newBoardTitle,
