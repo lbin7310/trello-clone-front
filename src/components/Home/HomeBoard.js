@@ -34,7 +34,7 @@ class HomeBoard extends Component {
             createBoardToggle,
             userId } = this.state;
     if (newBoardTitle !== ''){
-      fetch(`${API_URL}/boards`,{
+      fetch(`${API_URL}/boards/create`,{
         method: 'POST',
         body: JSON.stringify({
           title: newBoardTitle,
@@ -42,10 +42,13 @@ class HomeBoard extends Component {
         }),
         headers: {
           'Content-Type': 'application/json'
-        },
-        credentials: 'include'
+        }
       }).then(response => response.json())
-      .then(json => fuc(json));
+      .then(json => {
+        console.log(json);
+        return fuc(json)
+      }
+        );
     }
     this.setState({
       createBoardToggle: !createBoardToggle,

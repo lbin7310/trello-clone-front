@@ -23,7 +23,7 @@ class Container extends Component {
     const { newContainerTitle, containerToggle } = this.state;
     const { boardId } = this.props; 
     if ( newContainerTitle !== '') {
-      fetch(`${API_URL}/containers`, {
+      fetch(`${API_URL}/containers/create`, {
         method: 'POST',
           body: JSON.stringify({
             title: newContainerTitle,
@@ -31,11 +31,11 @@ class Container extends Component {
           }),
           headers: {
             'Content-Type': 'application/json'
-          },
-          credentials: 'include'
+          }
         })
         .then(res => res.json())
         .then(json => {
+          console.log(json, '<----container.js');
           fuc(json);
           this.setState({
             newContainerTitle: '',

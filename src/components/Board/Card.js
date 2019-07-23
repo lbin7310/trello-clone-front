@@ -29,7 +29,7 @@ class Card extends Component {
             cardToggle,
             containerId } = this.state;
     if ( newCardTitle !== '' ) {
-      fetch(`${API_URL}/cards`,{
+      fetch(`${API_URL}/cards/create`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -42,7 +42,7 @@ class Card extends Component {
       .then(res => res.json())
       .then(json => 
         this.setState({
-          cards: [...cards, json],
+          cards: json,
           newCardTitle: '',
           cardToggle: !cardToggle
         })
@@ -72,10 +72,11 @@ class Card extends Component {
       cardId: Number(e.target.id),
       containerId: Number(e.target.className.split(' ')[1])
     }
-    fetch(`${API_URL}/description?cardId=${descriptionInfo.cardId}&containerId=${descriptionInfo.containerId}`)
+    fetch(`${API_URL}/description/${descriptionInfo.cardId}`) // &containerId=${descriptionInfo.containerId}`
     .then(res => res.json())
     .then(json => {
-      const description = json.length === 0 ? {} : json[0].description
+      console.log(json);
+      const description = json === null ? {} : json.title
       getCardTitleAndDescription(title, description, descriptionInfo)
     });
   }
@@ -100,7 +101,7 @@ class Card extends Component {
               </div>
             )
           }
-          return '';
+          return ''
         })}
         <div className="card-Add"
           onClick={onCardToggle}

@@ -21,7 +21,7 @@ class BoardView extends Component {
 
   async componentDidMount() {
     const { boardId } = this.state 
-    await fetch(`${API_URL}/containers?boardId=${boardId}`)
+    await fetch(`${API_URL}/container/${boardId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({
@@ -32,9 +32,10 @@ class BoardView extends Component {
   }
 
   onAddContainer = (container) => {
-    const { containers } = this.state;
+    // const { containers } = this.state;
+    console.log(container);
     this.setState({
-      containers: [...containers, container]
+      containers: container
     })
   }
 
@@ -49,7 +50,7 @@ class BoardView extends Component {
       cardDescription: description,
       cardDescriptionDisplay: !cardDescriptionDisplay,
       cardId: info.cardId,
-      containerId: info.containerId
+      // containerId: info.containerId
     })
   }
 

@@ -15,10 +15,11 @@ class HomeView extends Component {
 
   async componentDidMount() {
     const { userName } = this.props.match.params;
-    await fetch(`${API_URL}/users?userName=${userName}`)
+    await fetch(`${API_URL}/user/${userName}`)
       .then(res => res.json())
       .then(usersJson => {
-        fetch(`http://localhost:5000/boards?userId=${usersJson[0].id}`)
+        console.log(usersJson[0].id);
+        fetch(`${API_URL}/board/${usersJson[0].id}`)
         .then(res => res.json())
         .then(json => {
           this.setState({
@@ -31,9 +32,8 @@ class HomeView extends Component {
   }
 
   onSetBoard = (board) => {
-    const { boards } = this.state;
     this.setState({
-      boards:[...boards, board]
+      boards: board
     })
   }
 
