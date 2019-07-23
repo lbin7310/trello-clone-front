@@ -29,12 +29,12 @@ class CardDescription extends Component {
     const { cardDescription } = this.props
     let splited = e.target.className.split(' ');
     const CARD_ID = splited[splited.length-1]
-    const CONTAINER_ID = splited[splited.length-2]
+    // const CONTAINER_ID = splited[splited.length-2]
     if ( cardDescription === ''){
       this.setState({
         toggle: !toggle,
         cardId: Number(CARD_ID),
-        containerId: Number(CONTAINER_ID)
+        // containerId: Number(CONTAINER_ID)
       })
     }
   }
@@ -43,20 +43,20 @@ class CardDescription extends Component {
     const { toggle, description, cardId, containerId} = this.state
     const { onCreateDescription } = this.props 
     if ( description !== '' ) {
-      fetch(`${API_URL}/description`,{
+      fetch(`${API_URL}/description/create`,{
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          description: description,
+          title: description,
           cardId: cardId,
-          containerId: containerId
+          // containerId: containerId
         })
       })
       .then( res => res.json())
       .then( json => {
-        onCreateDescription(json.description)
+        onCreateDescription(json.title)
         this.setState({
           description: '',
           toggle: !toggle
@@ -74,7 +74,8 @@ class CardDescription extends Component {
   }
 
   render() {
-    const { containerId,
+    const { 
+            // containerId,
             cardId,
             cardTitle,
             cardDescription,
@@ -101,7 +102,7 @@ class CardDescription extends Component {
               onChange={onDescriptionChage}
               style={{display: toggle ? 'none' : ''}}
             />
-            <button className={`description_btn ${containerId} ${cardId}`}
+            <button className={`description_btn containerId ${cardId}`}
               onClick={onToggle}
               style={{display: toggle ? '' : 'none'}}
             >
