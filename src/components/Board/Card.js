@@ -147,7 +147,6 @@ class CardIsActive extends Component {
 
   componentDidMount(){
     const { isActive, cardid } = this.props;
-    console.log(isActive, cardid);
     this.setState({
       isActive: isActive
     })

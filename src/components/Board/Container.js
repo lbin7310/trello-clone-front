@@ -38,7 +38,6 @@ class Container extends Component {
         })
         .then(res => res.json())
         .then(json => {
-          console.log(json, '<----container.js');
           fuc(json);
           this.setState({
             newContainerTitle: '',

@@ -44,7 +44,6 @@ class HomeBoard extends Component {
         }
       }).then(response => response.json())
       .then(json => {
-        console.log(json);
         return fuc(json)
       }
         );
@@ -53,10 +52,6 @@ class HomeBoard extends Component {
       createBoardToggle: !createBoardToggle,
       newBoardTitle: ''
     })
-  }
-
-  onClickBoard = (e) => {
-    console.log(e.target.id)
   }
   
   render() {

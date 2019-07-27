@@ -45,7 +45,6 @@ class Login extends Component {
         password: inputPassword
       })
       .then( res => {
-        console.log(res);
         if( res.data !== '' ) {
           localStorage.setItem('access-token', res.data.token);
           this.setState({
