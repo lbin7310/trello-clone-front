@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { API_URL } from '../../config.js';
-import { isActiveCard } from '../../function/Card'
+import { isActiveCard, completedCards, getCards } from '../../function/Card'
 import './Card.css';
+import axios from 'axios';
 
 class Card extends Component {
   constructor(){
@@ -18,9 +19,9 @@ class Card extends Component {
     await fetch(`${API_URL}/cards`)
     .then(res => res.json())
     .then(json => {
-      const activeCard = json.filter( card => card.isActive === false );
+      // const activeCard = json.filter( card => card.isActive === false );
       this.setState({
-        cards: [...activeCard],
+        cards: [...json],
       })
     });
   }
@@ -82,13 +83,35 @@ class Card extends Component {
   }
 
   onIsActive = (e, active) => {
-    isActiveCard(e.target.id, active);
-    
+    isActiveCard(e.target.id, active)
+    .then( res => {
+      this.setState({
+        cards: res.data
+      })
+    })
+  }
+
+  onCompletedCards = () => {
+    completedCards()
+    .then( res => {
+      this.setState({
+        cards: res.data
+      })
+    })
+  }
+
+  onOngoingCards = () => {
+    getCards()
+    .then( res => {
+      this.setState({
+        cards: res.data
+      })
+    })
   }
 
   render() {
     const { onCardToggle, onNewCardTitle, onCreateCard, onClickCard,
-            onIsActive } = this;
+            onIsActive, onCompletedCards, onOngoingCards } = this;
     const { cards, cardToggle, newCardTitle } = this.state;
     const { containerid } = this.props;
     return (
@@ -111,6 +134,10 @@ class Card extends Component {
           }
           return ''
         })}
+        <div>
+          <button onClick={onCompletedCards}>Completed Cards</button>
+          <button onClick={onOngoingCards}>Ongoing Cards</button>
+        </div>
         <div className="card-Add"
           onClick={onCardToggle}
           style={{display: cardToggle ?  '' : 'none' }}
@@ -153,12 +180,13 @@ class CardIsActive extends Component {
   }
 
   render () {
-    const { cardid, onIsActive } = this.props
+    const { cardid, onIsActive } = this.props;
+    const { isActive } = this.state;
     return (
       <div>
         <i className="fa fa-check-square" 
           id={cardid}
-          onClick={onIsActive}></i>
+          onClick={(e)=>onIsActive(e, isActive)}></i>
       </div>
     )
   }
