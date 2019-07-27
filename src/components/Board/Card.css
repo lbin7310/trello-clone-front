@@ -3,3 +3,7 @@
   background-color: rgb(217, 255, 217);
   color: black;
 }
+
+.allCard {
+  display: flex;
+}

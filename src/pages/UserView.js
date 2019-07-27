@@ -11,8 +11,7 @@ class UserView extends Component {
   render() {
     return (
       <div>
-        <Link to='/kibin' className='userName'>kibin</Link>
-        <Link to='/ki_blank' className="userName">ki_blank</Link>
+        <Link to='/login' className='userName'>Sign In</Link>
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { API_URL } from '../../config.js'
+import { API_URL } from '../../config.js';
+import { isActiveCard } from '../../function/Card'
 import './Card.css';
 
 class Card extends Component {
@@ -17,15 +18,15 @@ class Card extends Component {
     await fetch(`${API_URL}/cards`)
     .then(res => res.json())
     .then(json => {
+      const activeCard = json.filter( card => card.isActive === false );
       this.setState({
-        cards: [...json],
+        cards: [...activeCard],
       })
     });
   }
 
   onCreateCard = () => {
     const { newCardTitle,
-            cards,
             cardToggle,
             containerId } = this.state;
     if ( newCardTitle !== '' ) {
@@ -72,17 +73,22 @@ class Card extends Component {
       cardId: Number(e.target.id),
       containerId: Number(e.target.className.split(' ')[1])
     }
-    fetch(`${API_URL}/description/${descriptionInfo.cardId}`) // &containerId=${descriptionInfo.containerId}`
+    fetch(`${API_URL}/description/${descriptionInfo.cardId}`)
     .then(res => res.json())
     .then(json => {
-      console.log(json);
       const description = json === null ? {} : json.title
       getCardTitleAndDescription(title, description, descriptionInfo)
     });
   }
 
+  onIsActive = (e, active) => {
+    isActiveCard(e.target.id, active);
+    
+  }
+
   render() {
-    const { onCardToggle, onNewCardTitle, onCreateCard, onClickCard } = this;
+    const { onCardToggle, onNewCardTitle, onCreateCard, onClickCard,
+            onIsActive } = this;
     const { cards, cardToggle, newCardTitle } = this.state;
     const { containerid } = this.props;
     return (
@@ -92,12 +98,14 @@ class Card extends Component {
           const CARD_ID = card.id;
           if (card.containerId === containerid){
             return (
-              <div className={`card ${containerid}`} 
-                key={CARD_ID}
-                id={CARD_ID}
-                onClick={ e => onClickCard(e, CARD_TITLE)}
-              >
-                {CARD_TITLE}
+              <div className="allCard" key={CARD_ID}>
+                <div className={`card ${containerid}`} 
+                  id={CARD_ID}
+                  onClick={ e => onClickCard(e, CARD_TITLE)}
+                >
+                  {CARD_TITLE}
+                </div>
+                <CardIsActive onIsActive={onIsActive} cardid={CARD_ID} isActive={card.isActive}/>
               </div>
             )
           }
@@ -127,6 +135,35 @@ class Card extends Component {
       </div>
     )
   }
+}
+
+class CardIsActive extends Component {
+  constructor (props) {
+    super(props)
+    this.state={
+      isActive: false
+    }
+  }
+
+  componentDidMount(){
+    const { isActive, cardid } = this.props;
+    console.log(isActive, cardid);
+    this.setState({
+      isActive: isActive
+    })
+  }
+
+  render () {
+    const { cardid, onIsActive } = this.props
+    return (
+      <div>
+        <i className="fa fa-check-square" 
+          id={cardid}
+          onClick={onIsActive}></i>
+      </div>
+    )
+  }
+  
 }
 
 export default Card;

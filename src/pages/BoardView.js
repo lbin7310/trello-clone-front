@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Board from '../components/Board/Board';
 import CardDescription from '../components/Board/CardDescription';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { API_URL } from '../config';
+import { updateBoard } from '../function/BoardView'
 import './BoardView.css';
 
 class BoardView extends Component {
@@ -14,8 +15,10 @@ class BoardView extends Component {
       cardDescription: '',
       cardDescriptionDisplay: true,
       boardId: this.props.match.params.id,
+      boardName: this.props.match.params.boardTitle,
       cardId: 0,
-      containerId: 0
+      containerId: 0,
+      toggle: false
     }
   }
 
@@ -32,8 +35,6 @@ class BoardView extends Component {
   }
 
   onAddContainer = (container) => {
-    // const { containers } = this.state;
-    console.log(container);
     this.setState({
       containers: container
     })
@@ -44,13 +45,11 @@ class BoardView extends Component {
     if (typeof description !== "string") {
       description = '';
     }
-
     this.setState({
       cardTitle: title,
       cardDescription: description,
       cardDescriptionDisplay: !cardDescriptionDisplay,
       cardId: info.cardId,
-      // containerId: info.containerId
     })
   }
 
@@ -71,8 +70,29 @@ class BoardView extends Component {
     })
   }
 
+  onChangeTitle = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit = (e) => {
+    const { boardId, boardName } = this.state;
+    e.preventDefault();
+    updateBoard(boardId, boardName)
+  }
+
+  onBoardNameToggle = (e) => {
+    const { toggle }=this.state;
+    this.setState({
+      toggle: !toggle
+    })
+  }
+
   render() {
     const { userName } = this.props.match.params
+
+    const { isLogin } = this.props;
 
     const { containers,
             cardTitle,
@@ -80,43 +100,64 @@ class BoardView extends Component {
             cardDescriptionDisplay,
             boardId,
             containerId,
-            cardId } = this.state;
+            cardId,
+            boardName,
+            toggle } = this.state;
 
     const { onAddContainer,
             getCardTitleAndDescription,
             onToggleDescription,
-            onCreateDescription } = this;
-    return (
-      <div>
-        <div className="Board_Nav">
-          <button className="Board_Home-btn">
-            <Link to={`/${userName}`} >
-              Boards
-            </Link>
-          </button>
-          <div className="boardView">
-        </div>
-          BoardView
-        </div>
-        <Board containers={containers}
-          onAddContainer={onAddContainer}
-          getCardTitleAndDescription={getCardTitleAndDescription}
-          boardId={boardId}
-        />
+            onCreateDescription,
+            onChangeTitle,
+            onSubmit,
+            onBoardNameToggle } = this;
+
+    if ( isLogin ) {
+      return (
         <div>
-          <CardDescription 
+          <div className="Board_Nav">
+            <button className="Board_Home-btn">
+              <Link to={`/user/${userName}`} >
+                Boards
+              </Link>
+            </button>
+            <div className="boardView">
+          </div >
+          <div onClick={onBoardNameToggle} style={{display: toggle ? 'none' : ''}}>
+            {boardName}
+          </div>
+          <form onSubmit={onSubmit} style={{display: !toggle ? 'none' : ''}}>
+            <input 
+              type="text"
+              name="boardName"
+              value={boardName}
+              onChange={onChangeTitle}
+            />
+            <button type='submit' onClick={onBoardNameToggle} >수정</button>
+          </form>
+          </div>
+          <Board containers={containers}
+            onAddContainer={onAddContainer}
             getCardTitleAndDescription={getCardTitleAndDescription}
-            containerId={containerId}
-            cardId={cardId}
-            cardDescriptionDisplay={cardDescriptionDisplay}
-            cardTitle={cardTitle}
-            cardDescription={cardDescription}
-            onToggleDescription={onToggleDescription}
-            onCreateDescription={onCreateDescription}
+            boardId={boardId}
           />
+          <div>
+            <CardDescription 
+              getCardTitleAndDescription={getCardTitleAndDescription}
+              containerId={containerId}
+              cardId={cardId}
+              cardDescriptionDisplay={cardDescriptionDisplay}
+              cardTitle={cardTitle}
+              cardDescription={cardDescription}
+              onToggleDescription={onToggleDescription}
+              onCreateDescription={onCreateDescription}
+            />
+          </div>
         </div>
-      </div>
-    )
+      )
+    } else {
+      return <Redirect push to="/login"/>
+    }
   }
 }
 

@@ -14,7 +14,6 @@ class HomeBoard extends Component {
   }
 
   onModalToggle = (e) => {
-    console.log(e.target.id);
     const { createBoardToggle } = this.state;
     this.setState({
       createBoardToggle: !createBoardToggle,
@@ -73,7 +72,7 @@ class HomeBoard extends Component {
             {boards.map(board => {
               const BOARD_ID = board.id;
               return (
-                <Link to={`${userName}/board/${BOARD_ID}`} key={BOARD_ID}
+                <Link to={`/${userName}/${board.title}/${BOARD_ID}`} key={BOARD_ID}
                     id={BOARD_ID}
                     className="board"
                   >
