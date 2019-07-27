@@ -92,7 +92,7 @@ class Login extends Component {
               />
               <div>비밀번호</div>
               <input 
-                type="text"
+                type="password"
                 value={inputPassword}
                 name="inputPassword"
                 onChange={onChangeInputValue}
