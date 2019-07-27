@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContainerTitle from './Container-title';
 import Card from './Card';
 import { API_URL } from '../../config';
 
@@ -7,7 +8,9 @@ class Container extends Component {
     super (props)
     this.state={
       containerToggle: true,
+      containerTitleToggle: true,
       newContainerTitle: '',
+      containerTitle: ''
     }
   }
 
@@ -51,24 +54,32 @@ class Container extends Component {
     })
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   render() {
     const { containers,
             onAddContainer,
             getCardTitleAndDescription } = this.props
 
     const { newContainerTitle,
-            containerToggle } = this.state;
+            containerToggle} = this.state;
 
-    const { onChangeNewContainerTitle,
-            onAddList,
-            onContainerToggle } = this;
+    const { onAddList,
+            onContainerToggle,
+            onChangeNewContainerTitle,
+            handleSubmit } = this;
 
     return (
       <div className="containers">
       {containers.map( container => { // containers
         return (
-          <div className="container" key={container.id}>
-            <div className="container-title">{container.title}</div>
+          <div className="container" key={container.id} id={container.id}>
+            <ContainerTitle 
+              containerid={container.id}
+              title={container.title}
+            />
             <div>
               <Card 
                 containerid={container.id}
@@ -86,7 +97,7 @@ class Container extends Component {
           Add a list
         </div>
         <div style={{display: containerToggle ? 'none' : '' }}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input
               className="container"
               placeholder="New List Title"
@@ -94,15 +105,15 @@ class Container extends Component {
               name="newContainerTitle"
               onChange={onChangeNewContainerTitle}
             />
+            <div>
+              <button onClick={() => onAddList(onAddContainer)}>
+                Add list
+              </button>
+              <button onClick={onContainerToggle}>
+                Cancel
+              </button>
+            </div>
           </form>
-          <div>
-            <button onClick={() => onAddList(onAddContainer)}>
-              Add list
-            </button>
-            <button onClick={onContainerToggle}>
-              Cancel
-            </button>
-          </div>
         </div>
       </div>
     </div>
