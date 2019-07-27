@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomeBoard from '../components/Home/HomeBoard';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { API_URL } from '../config';
 import './HomeView.css'
 
@@ -18,15 +18,18 @@ class HomeView extends Component {
     await fetch(`${API_URL}/user/${userName}`)
       .then(res => res.json())
       .then(usersJson => {
-        console.log(usersJson[0].id);
-        fetch(`${API_URL}/board/${usersJson[0].id}`)
-        .then(res => res.json())
-        .then(json => {
-          this.setState({
-            boards: [...json],
-            userId: usersJson[0].id
+        if ( usersJson !== null ) {
+          fetch(`${API_URL}/board/${usersJson.id}`)
+          .then(res => res.json())
+          .then(json => {
+            this.setState({
+              boards: [...json],
+              userId: usersJson.id
+            })
           })
-        })
+        } else {
+          localStorage.removeItem('access-token');
+        }
       }
     );
   }
@@ -41,21 +44,21 @@ class HomeView extends Component {
     const { boards, userId } = this.state;
     const { onSetBoard } = this;
     const { userName } = this.props.match.params;
-    return (
-      <div>
-        <div className="home_title">
-          <div className="home_nav homeView">
-            <Link to="/">Users</Link>
-          </div>
+    const { isLogin } = this.props;
+    if ( isLogin ) {
+      return (
+        <div>
+          <HomeBoard
+            userId={userId}
+            userName={userName}
+            boards={boards}
+            onSetBoard={onSetBoard}
+          />
         </div>
-        <HomeBoard
-          userId={userId}
-          userName={userName}
-          boards={boards}
-          onSetBoard={onSetBoard}
-        />
-      </div>
-    )
+      )
+    } else {
+      return <Redirect push to="/login" />
+    }
   }
 }
 
