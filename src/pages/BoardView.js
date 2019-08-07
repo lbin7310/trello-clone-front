@@ -3,7 +3,7 @@ import Board from '../components/Board/Board';
 import CardDescription from '../components/Board/CardDescription';
 import { Link, Redirect } from 'react-router-dom'
 import { API_URL } from '../config';
-import { updateBoard } from '../function/BoardView'
+import { updateBoard, deleteBoard } from '../function/BoardView'
 import './BoardView.css';
 
 class BoardView extends Component {
@@ -89,6 +89,11 @@ class BoardView extends Component {
     })
   }
 
+  onDeleteBoard = () => {
+    const { boardId } = this.state;
+    deleteBoard(boardId);
+  }
+
   render() {
     const { userName } = this.props.match.params
 
@@ -110,7 +115,8 @@ class BoardView extends Component {
             onCreateDescription,
             onChangeTitle,
             onSubmit,
-            onBoardNameToggle } = this;
+            onBoardNameToggle,
+            onDeleteBoard } = this;
 
     if ( isLogin ) {
       return (
@@ -119,6 +125,11 @@ class BoardView extends Component {
             <button className="Board_Home-btn">
               <Link to={`/user/${userName}`} >
                 Boards
+              </Link>
+            </button>
+            <button onClick={onDeleteBoard}>
+              <Link to={`/user/${userName}`}>
+                Board Delete
               </Link>
             </button>
             <div className="boardView">

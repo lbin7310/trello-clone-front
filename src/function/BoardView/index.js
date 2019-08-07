@@ -7,9 +7,9 @@ export const updateBoard = (id, title) => {
     title
   })
 };
-export const deleteBoard = () => {
-  axios.post(`${API_URL}/boards/delete`, {
 
+export const deleteBoard = (id) => {
+  axios.post(`${API_URL}/boards/delete`, {
+    id
   })
-  .then(res => res);
 };

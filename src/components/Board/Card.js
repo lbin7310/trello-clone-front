@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { API_URL } from '../../config.js';
 import { isActiveCard, completedCards, getCards } from '../../function/Card'
 import './Card.css';
-import axios from 'axios';
 
 class Card extends Component {
   constructor(){
@@ -11,7 +10,8 @@ class Card extends Component {
       cards: [],
       cardToggle: true,
       newCardTitle: '',
-      containerId: 0
+      containerId: 0,
+      toggle: true
     }
   }
   
@@ -92,19 +92,23 @@ class Card extends Component {
   }
 
   onCompletedCards = () => {
+    const { toggle } = this.state;
     completedCards()
     .then( res => {
       this.setState({
-        cards: res.data
+        cards: res.data,
+        toggle: !toggle
       })
     })
   }
 
   onOngoingCards = () => {
+    const { toggle } = this.state;
     getCards()
     .then( res => {
       this.setState({
-        cards: res.data
+        cards: res.data,
+        toggle: !toggle
       })
     })
   }
@@ -112,7 +116,7 @@ class Card extends Component {
   render() {
     const { onCardToggle, onNewCardTitle, onCreateCard, onClickCard,
             onIsActive, onCompletedCards, onOngoingCards } = this;
-    const { cards, cardToggle, newCardTitle } = this.state;
+    const { cards, cardToggle, newCardTitle, toggle } = this.state;
     const { containerid } = this.props;
     return (
       <div className="cards">
@@ -135,8 +139,16 @@ class Card extends Component {
           return ''
         })}
         <div>
-          <button onClick={onCompletedCards}>Completed Cards</button>
-          <button onClick={onOngoingCards}>Ongoing Cards</button>
+          <button onClick={onCompletedCards}
+            style={{display: toggle ? '' : 'none'}}
+          >
+            Completed Cards
+          </button>
+          <button onClick={onOngoingCards}
+            style={{display: !toggle ? '' : 'none'}}
+          >
+            Ongoing Cards
+          </button>
         </div>
         <div className="card-Add"
           onClick={onCardToggle}
