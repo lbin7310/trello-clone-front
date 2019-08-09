@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './UserView.css'
+import './UserView.scss'
 import { Link } from 'react-router-dom';
 
 class UserView extends Component {
@@ -10,7 +10,7 @@ class UserView extends Component {
 
   render() {
     return (
-      <div>
+      <div className="signin__container">
         <Link to='/login' className='userName'>Sign In</Link>
       </div>
     )

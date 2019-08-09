@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { HomeView, BoardView, UserView, SignUpView, LoginView } from './pages';
 import { BrowserRouter, Route } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 class App extends Component {
   constructor () {

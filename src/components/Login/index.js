@@ -80,29 +80,31 @@ class Login extends Component {
       return <Redirect push to={`/user/${nickName}`}/>
     } else {
       return (
-        <div>
-          <div>
-            <form>
-              <div>이메일</div>
+        <div className="loginView__container">
+          <form className="login__form">
+            <div className="login__email">
+              <div className="login__text">이메일</div>
               <input 
                 type="text"
                 value={inputEmail}
                 name="inputEmail"
                 onChange={onChangeInputValue}
               />
-              <div>비밀번호</div>
+            </div>
+            <div className="login__password">
+              <div className="login__text">비밀번호</div>
               <input 
                 type="password"
                 value={inputPassword}
                 name="inputPassword"
                 onChange={onChangeInputValue}
               />
-            </form>
-          </div>
-          <div>
-            <button onClick={onLogin}>로그인</button>
-            <Link to="/signup">
-              <button>회원가입</button>
+            </div>
+          </form>
+          <div className="login__buttons">
+            <div onClick={onLogin} className="login__button-login">로그인</div>
+            <Link to="/signup" className="login__button-signup">
+              <div>회원가입</div>
             </Link>
           </div>
           <div>{loginResult}</div>

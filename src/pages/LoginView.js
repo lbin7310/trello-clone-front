@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import Login from '../components/Login'
+import React, { Component } from 'react';
+import Login from '../components/Login';
+import "./LoginView.scss";
 
 class LoginView extends Component {
   constructor (props) {
@@ -10,7 +11,7 @@ class LoginView extends Component {
   render() {
     const { isLogin, onLoginState, onLogout } = this.props
     return (
-      <div>
+      <div className="login__container">
         <Login isLogin={isLogin} onLoginState={onLoginState} onLogout={onLogout}/>
       </div>
     )
