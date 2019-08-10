@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { API_URL } from '../../config';
 import axios from 'axios'
-import './index.css';
+import './index.scss';
 
 class SignUp extends Component {
   constructor (props) {
@@ -72,7 +72,7 @@ class SignUp extends Component {
             })
           }
         }
-    )} else {
+      )} else {
       this.setState({
         emailCharacter: '다시 확인 해주세요',
         emailCheck: false
@@ -210,28 +210,36 @@ class SignUp extends Component {
     } else {
       return (
         <div className="signup">
-          <div className="signup_email">
-            <div>이메일</div>
-            <form>
+          <div className="signup__email">
+            <div className="signup__email-text">이메일</div>
+            <form className="signup__email-form">
               <input 
+                className="signup__email-input"
                 type="text"
                 value={inputEmail}
                 name="inputEmail"
                 onChange={onChangeInputValue}
               />
             </form>
-            <button onClick={onCheckEmail}>중복확인</button>
-            <div>{emailCharacter}</div>
+            <button 
+              className="signup__email-verify"
+              onClick={onCheckEmail}
+            >
+              중복확인
+            </button>
+            <div className="signup__checkCharacter">{emailCharacter}</div>
           </div>
-          <div className="signup_password">
-            <div>비밀번호</div>
-            <form>
-              <input type="password"
+          <div className="signup__password">
+            <form className="signup__password-form">
+              <div className="signup__password-text">비밀번호</div>
+              <input 
+                className="signup__password-input"
+                type="password"
                 value={inputPassword}
                 name="inputPassword"
                 onChange={onChangeInputValue}
               />
-                <div>비밀번호 확인</div>
+              <div className="signup__password-verify-text">비밀번호 확인</div>
               <input type="password"
                 value={checkPassword}
                 name="checkPassword"
@@ -239,11 +247,11 @@ class SignUp extends Component {
                 onKeyUp={onCheckCharacter}
               />
             </form>
-            <div className="signup checkCharacter"
+            <div className="signup__checkCharacter"
             >{checkCharacter}</div>
           </div>
           <div>
-            <div>Nick Name</div>
+            <div className="signup__nickname-text">Nick Name</div>
             <form>
               <input 
                 type="text"
@@ -253,11 +261,11 @@ class SignUp extends Component {
                 onKeyUp={onCheckNickName}
                 />
             </form>
-            <div>{nickNameCharacter}</div>
+            <div className="signup__checkCharacter">{nickNameCharacter}</div>
           </div>
           <div>{resultSignup}</div>
-          <div className="signup_buttons">
-            <button onClick={onSignup}>가입</button>
+          <div className="signup__buttons">
+            <button onClick={onSignup} className="signup__signup-button">가입</button>
             <Link to="login">
               <button>취소</button>
             </Link>
@@ -267,8 +275,7 @@ class SignUp extends Component {
               style={{display: toggle ? '' : 'none' }}
             >
               <div className="signup_modal-content">
-                <span className="signup_close">&times;</span>
-                <p>{resultSignup}</p>
+                <p className="signup__result-text">{resultSignup}</p>
                 <Link to="login">
                   <button onClick={onClickToggle}>확인</button>
                 </Link>
