@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../config';
-import "./HomeBoard.css";
+import "./HomeBoard.scss";
 
 class HomeBoard extends Component {
   constructor (props) {
@@ -81,11 +81,11 @@ class HomeBoard extends Component {
             >
               Create new board
             </div>
-            <div className="modal" 
+            <div className="homeboard__modal" 
               style={{display: createBoardToggle ? '' : 'none'}}
             >
-              <div className="modal-content">
-                <span className="close"
+              <div className="homeboard__modal-content">
+                <span className="homeboard__close"
                 onClick={onModalToggle}
                 >
                   &times;
@@ -99,7 +99,9 @@ class HomeBoard extends Component {
                     title="newBoardTitle"
                   />
                 </form>
-                <button onClick={() => onCreate(onSetBoard)}>Create</button>
+                <button 
+                  className="homeboard__create-button"
+                  onClick={() => onCreate(onSetBoard)}>Create</button>
               </div>
             </div>
           </div>

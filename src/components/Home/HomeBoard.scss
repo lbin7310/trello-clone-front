@@ -1,0 +1,84 @@
+.create-new-board {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+  height: 60px;
+  background-color: rgb(253, 243, 243);
+}
+
+.boards {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.homeboard__modal {
+  /* display: none; Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.homeboard__modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+  max-width: 300px;
+  height: 100%;
+  max-height: 80px;
+  border-radius: 5px;
+  .homeboard__close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .homeboard__close:hover,
+  .homeboard__close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  form {
+    input {
+      border: none;
+      font-size: 15px;
+      border-radius: 2px;
+      border: 1px solid #dfe4ea;
+    }
+  }
+  .homeboard__create-button {
+    background-color: #dfe4ea;
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 15px;
+    margin-top: 28px;
+  }
+  .homeboard__create-button:hover,
+  .homeboard__create-button:focus {
+    color:white;
+    background-color: #1e90ff;
+    cursor: pointer;
+  }
+}
+
+
+.description_write {
+  width: 300px;
+  height: 100px;
+}
+
+.description_btn {
+  display: block;
+}

@@ -2,21 +2,6 @@
   display: flex;
   padding: 0 1rem;
   margin-top: 15px;
-
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
   .logout__button {
     border: none;
     background-color: #dfe4ea;
@@ -25,6 +10,7 @@
     padding: 5px 10px;
     font-size: 15px;
     font-weight: 600;
+    display: inline-block;
   }
   
   .logout__button:hover,
