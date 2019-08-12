@@ -32,7 +32,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="logout" style={{display: isLogin ? '' : 'none'}}>
-          <button onClick={onLogout}>로그아웃</button>
+          <button 
+          className="logout__button"
+          onClick={onLogout}
+          >로그아웃
+        </button>
         </div>
         <div className="App">
           <Route path="/" exact render={(props) => <UserView {...props} isLogin={isLogin} />} 

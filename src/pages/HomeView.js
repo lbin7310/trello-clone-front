@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HomeBoard from '../components/Home/HomeBoard';
 import { Redirect } from 'react-router-dom';
 import { API_URL } from '../config';
-import './HomeView.css'
+import './HomeView.scss'
 
 class HomeView extends Component {
   constructor () {

@@ -4,7 +4,7 @@ import CardDescription from '../components/Board/CardDescription';
 import { Link, Redirect } from 'react-router-dom'
 import { API_URL } from '../config';
 import { updateBoard, deleteBoard } from '../function/BoardView'
-import './BoardView.css';
+import './BoardView.scss';
 
 class BoardView extends Component {
   constructor (props) {

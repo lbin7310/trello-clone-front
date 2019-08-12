@@ -1,3 +1,36 @@
 .logout {
-  border-bottom: solid 1px black;
+  display: flex;
+  padding: 0 1rem;
+  margin-top: 15px;
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .logout__button {
+    border: none;
+    background-color: #dfe4ea;
+    border-radius: 3px;
+    color: white;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  
+  .logout__button:hover,
+  .logout__button:focus {
+    background-color: #ff4757;
+    cursor: pointer;
+  }
 }
+

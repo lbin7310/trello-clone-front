@@ -13,15 +13,6 @@
   flex-wrap: wrap;
 }
 
-.board {
- border: 1px solid black;
- display: inline-block;
- width: 120px;
- height: 60px;
- margin-right: 1rem; 
- margin-bottom: 1rem;
-}
-
 .modal {
   /* display: none; Hidden by default */
   position: fixed; /* Stay in place */
