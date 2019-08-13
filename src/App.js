@@ -31,13 +31,6 @@ class App extends Component {
             onLogout }=this;
     return (
       <BrowserRouter>
-        <div className="logout" style={{display: isLogin ? '' : 'none'}}>
-          <button 
-          className="logout__button"
-          onClick={onLogout}
-          >로그아웃
-        </button>
-        </div>
         <div className="App">
           <Route path="/" exact render={(props) => <UserView {...props} isLogin={isLogin} />} 
           /> 
@@ -54,6 +47,13 @@ class App extends Component {
             <LoginView {...props} isLogin={isLogin} 
             onLoginState={onLoginState} onLogout={onLogout}/>} 
           /> 
+        </div>
+        <div className="logout" style={{display: isLogin ? '' : 'none'}}>
+          <button 
+          className="logout__button"
+          onClick={onLogout}
+          >로그아웃
+        </button>
         </div>
       </BrowserRouter>
     );

@@ -127,25 +127,28 @@ class BoardView extends Component {
                 Boards
               </Link>
             </button>
-            <button onClick={onDeleteBoard}>
+            <div className="Board__title"
+              onClick={onBoardNameToggle} style={{display: toggle ? 'none' : ''}}
+            >
+              {boardName}
+            </div>
+            <form onSubmit={onSubmit} style={{display: !toggle ? 'none' : ''}}>
+              <input 
+                type="text"
+                name="boardName"
+                value={boardName}
+                onChange={onChangeTitle}
+              />
+              <button type='submit' onClick={onBoardNameToggle} >수정</button>
+            </form>
+            <button 
+              className="Board__delete-btn"
+              onClick={onDeleteBoard}
+            >
               <Link to={`/user/${userName}`}>
                 Board Delete
               </Link>
             </button>
-            <div className="boardView">
-          </div >
-          <div onClick={onBoardNameToggle} style={{display: toggle ? 'none' : ''}}>
-            {boardName}
-          </div>
-          <form onSubmit={onSubmit} style={{display: !toggle ? 'none' : ''}}>
-            <input 
-              type="text"
-              name="boardName"
-              value={boardName}
-              onChange={onChangeTitle}
-            />
-            <button type='submit' onClick={onBoardNameToggle} >수정</button>
-          </form>
           </div>
           <Board containers={containers}
             onAddContainer={onAddContainer}

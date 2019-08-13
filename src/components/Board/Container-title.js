@@ -56,7 +56,10 @@ class ContainerTitle extends Component {
           onClick={onToggle} style={{display: toggle ? 'none' : ''}}
         >{containerTitle}
         </div>
-        <div style={{display: toggle ? '' : 'none'}}>
+        <div 
+          className="container__title-input"
+          style={{display: toggle ? '' : 'none'}}
+        >
           <form 
             id={containerId}
             onSubmit={onSubmit}

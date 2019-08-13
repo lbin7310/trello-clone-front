@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { updateDescription } from '../../function/Description'
 import { API_URL } from '../../config'
+import "./CardDescription.scss";
 
 class CardDescription extends Component {
   constructor(props) {
@@ -108,41 +109,43 @@ class CardDescription extends Component {
             getDescription,
             handleSubmit } = this;
     return (
-    <div className="modal" style={{display: cardDescriptionDisplay ? "none" : ""}}>
-      <div className="modal-content">
-        <span className="close" onClick={onToggleDescription}>&times;</span>
-        <div>{cardTitle}</div>
-        <div>
-          <div onClick={getDescription}
-            style={{display: toggle ? '' : 'none' }}
-          >
-          {cardDescription}
-          </div>
-          <div className="description_write-container">
-            <form onSubmit={handleSubmit}>
-              <textarea className="description_write"
-                type="text"
-                placeholder="내용을 작성하세요."
-                value={description}
-                onChange={onDescriptionChage}
-                style={{display: toggle ? 'none' : ''}}
-              />
-              <button className={`description_btn containerId ${cardId}`}
-                onClick={onToggle}
-                style={{display: toggle ? '' : 'none'}}
+      <div>
+        <div className="description__modal" style={{display: cardDescriptionDisplay ? "none" : ""}}>
+          <div className="description__modal-content">
+            <span className="description__close" onClick={onToggleDescription}>&times;</span>
+            <div>{cardTitle}</div>
+            <div>
+              <div onClick={getDescription}
+                style={{display: toggle ? '' : 'none' }}
               >
-                Write
-              </button>
-              <button style={{display: modifyToggle ? '' : 'none'}}>수정</button>
-              <div style={{display: toggle ? 'none' : ''}}>
-                <button onClick={onOkToggle} >OK</button>
-                <button onClick={onCancelToggle}>Cancel</button>
+              {cardDescription}
               </div>
-            </form>
+              <div className="description_write-container">
+                <form onSubmit={handleSubmit}>
+                  <textarea className="description_write"
+                    type="text"
+                    placeholder="내용을 작성하세요."
+                    value={description}
+                    onChange={onDescriptionChage}
+                    style={{display: toggle ? 'none' : ''}}
+                  />
+                  <button className={`description_btn containerId ${cardId}`}
+                    onClick={onToggle}
+                    style={{display: toggle ? '' : 'none'}}
+                  >
+                    Write
+                  </button>
+                  <button style={{display: modifyToggle ? '' : 'none'}}>수정</button>
+                  <div style={{display: toggle ? 'none' : ''}}>
+                    <button onClick={onOkToggle} >OK</button>
+                    <button onClick={onCancelToggle}>Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     )
   }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { API_URL } from '../../config.js';
 import { isActiveCard, completedCards, getCards } from '../../function/Card'
-import './Card.css';
 
 class Card extends Component {
   constructor(){
@@ -138,7 +137,30 @@ class Card extends Component {
           }
           return ''
         })}
-        <div>
+        <div className="card-Add"
+          onClick={onCardToggle}
+          style={{display: cardToggle ?  '' : 'none' }}
+        >
+         + Add another card
+        </div>
+        <div 
+          className="card__Add-card"
+          style={{display: cardToggle ? 'none' : '' }}>
+          <input  
+            className="card__Add-card-input"
+            placeholder="Add new card"
+            value={newCardTitle}
+            name='newCardTtile'
+            onChange={onNewCardTitle}
+          />
+          <div className="card__Add-card-buttons">
+            <button onClick={onCreateCard}>
+              Add card
+            </button>
+            <button onClick={onCardToggle}>Cancel</button>
+          </div>
+        </div>
+        <div className="card__buttons">
           <button onClick={onCompletedCards}
             style={{display: toggle ? '' : 'none'}}
           >
@@ -149,27 +171,6 @@ class Card extends Component {
           >
             Ongoing Cards
           </button>
-        </div>
-        <div className="card-Add"
-          onClick={onCardToggle}
-          style={{display: cardToggle ?  '' : 'none' }}
-        > + Add another card</div>
-        <div 
-          className="createOrCancel"
-          style={{display: cardToggle ? 'none' : '' }}>
-          <input  
-            className="card"
-            placeholder="Add new card"
-            value={newCardTitle}
-            name='newCardTtile'
-            onChange={onNewCardTitle}
-          />
-          <div>
-            <button onClick={onCreateCard}>
-              Add card
-            </button>
-            <button onClick={onCardToggle}>Cancel</button>
-          </div>
         </div>
       </div>
     )

@@ -79,7 +79,7 @@ class Container extends Component {
               containerid={container.id}
               title={container.title}
             />
-            <div>
+            <div className="container__info">
               <Card 
                 containerid={container.id}
                 getCardTitleAndDescription={getCardTitleAndDescription}
@@ -98,13 +98,12 @@ class Container extends Component {
         <div style={{display: containerToggle ? 'none' : '' }}>
           <form onSubmit={handleSubmit}>
             <input
-              className="container"
               placeholder="New List Title"
               value={newContainerTitle}
               name="newContainerTitle"
               onChange={onChangeNewContainerTitle}
             />
-            <div>
+            <div className="Add__buttons">
               <button onClick={() => onAddList(onAddContainer)}>
                 Add list
               </button>
