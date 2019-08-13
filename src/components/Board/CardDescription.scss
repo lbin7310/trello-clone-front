@@ -19,9 +19,10 @@
   padding: 20px;
   border: 1px solid #888;
   width: 100%;  
-  max-width: 600px;
+  max-width: 350px;;
   height: 100%;
-  max-height: 600px;
+  max-height: 200px;
+  border-radius: 3px;
 }
 
 
@@ -39,7 +40,79 @@
   cursor: pointer;
 }
 
-.description_write {
-  width: 300px;
-  height: 100px;
+.description__contents {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .description__cardTitle {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  .description__cardDescription {
+    background-color: #dff9fb;
+    height: 100%;
+    max-height: 120px;
+    padding: 10px;
+    border-radius: 3px;
+    margin-left: 5px;
+  }
+  .description_write {
+    border: none;
+    background-color: #f1f2f6;
+    border-radius: 3px;
+    padding: 10px;
+    margin-left: 5px;
+    width: 93%;
+    height: 85px;
+  }
+  .description_btn,
+  .description__btns {
+    margin-left: 5px;
+  }
+  .description_btn {
+    margin-top: 10px;
+    border: none;
+    background-color: #dfe4ea;
+    color: white;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 3px;
+  }
+
+  .description_btn:hover, 
+  .description_btn:focus {
+    background-color: #2ed573;
+    cursor: pointer;
+  }
+
+  .description__btns {
+    margin-top: 5px;
+    .description__btn-ok,
+    .description__btn-cancel {
+      border: none;
+      background-color: #dfe4ea;
+      color: white;
+      padding: 5px 10px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+  
+    .description__btn-ok {
+      margin-right: 10px;
+    }
+
+    .description__btn-ok:hover,
+    .description__btn-ok:focus {
+      background-color: #3742fa;
+      cursor: pointer;
+    }
+    .description__btn-cancel:hover,
+    .description__btn-cancel:focus {
+      background-color: #ffa502;
+      cursor: pointer;
+    }
+  }
+  
 }

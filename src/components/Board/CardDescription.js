@@ -100,8 +100,7 @@ class CardDescription extends Component {
             cardDescriptionDisplay,
             onToggleDescription } = this.props;
     const { description,
-            toggle,
-            modifyToggle } = this.state;
+            toggle } = this.state;
     const { onDescriptionChage,
             onToggle,
             onOkToggle,
@@ -113,9 +112,10 @@ class CardDescription extends Component {
         <div className="description__modal" style={{display: cardDescriptionDisplay ? "none" : ""}}>
           <div className="description__modal-content">
             <span className="description__close" onClick={onToggleDescription}>&times;</span>
-            <div>{cardTitle}</div>
-            <div>
-              <div onClick={getDescription}
+            <div className="description__contents">
+              <div className="description__cardTitle">{cardTitle}</div>
+              <div className="description__cardDescription"
+                onClick={getDescription}
                 style={{display: toggle ? '' : 'none' }}
               >
               {cardDescription}
@@ -135,10 +135,16 @@ class CardDescription extends Component {
                   >
                     Write
                   </button>
-                  <button style={{display: modifyToggle ? '' : 'none'}}>수정</button>
-                  <div style={{display: toggle ? 'none' : ''}}>
-                    <button onClick={onOkToggle} >OK</button>
-                    <button onClick={onCancelToggle}>Cancel</button>
+                  <div className="description__btns"
+                    style={{display: toggle ? 'none' : ''}}>
+                    <button className="description__btn-ok"
+                      onClick={onOkToggle} 
+                    >OK
+                    </button>
+                    <button className="description__btn-cancel"
+                      onClick={onCancelToggle}
+                    >Cancel
+                    </button>
                   </div>
                 </form>
               </div>

@@ -2,6 +2,7 @@
 .Board_Nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #f1f2f6;
   margin: 0.5rem 1rem;
   padding: 5px 10px;
@@ -11,6 +12,29 @@
     font-size: 20px;
     color: black
   }
+
+  form {
+    display: flex;
+    align-items: center;
+    input {
+      font-size: 15px;
+      border: none;
+      padding: 5px 5px;
+      margin-right: 5px;
+      border-radius: 3px;
+    }
+    button {
+      color: #a4b0be;
+      font-size: 13px;
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #2ed573;
+      color: white;
+    }
+  }
+
   button {
     border: none;
     border-radius: 3px;
@@ -54,12 +78,15 @@
 }
 
 .containers {
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  display: -webkit-inline-box;
+  overflow-x: scroll;
+  white-space: nowrap;
   .container {
     background-color: #7bed9f;
     padding: 10px 10px;
     width: 100%;
+    height: 100%;
     max-width: 235px;
     margin : 1rem;
     color: white;
