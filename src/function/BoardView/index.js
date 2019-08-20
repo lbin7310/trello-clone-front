@@ -4,12 +4,12 @@ import { API_URL } from '../../config';
 export const updateBoard = (id, title) => {
   axios.post(`${API_URL}/boards/update`, {
     id,
-    title
-  })
+    title,
+  });
 };
 
-export const deleteBoard = (id) => {
+export const deleteBoard = id => {
   axios.post(`${API_URL}/boards/delete`, {
-    id
-  })
+    id,
+  });
 };

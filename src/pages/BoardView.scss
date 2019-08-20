@@ -1,253 +1,252 @@
-
 .Board_Nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f1f2f6;
-  margin: 0.5rem 1rem;
-  padding: 5px 10px;
-  border-radius: 5px;
-  
-  .Board__title {
-    font-size: 20px;
-    color: black
-  }
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f1f2f6;
+	margin: 0.5rem 1rem;
+	padding: 5px 10px;
+	border-radius: 5px;
 
-  form {
-    display: flex;
-    align-items: center;
-    input {
-      font-size: 15px;
-      border: none;
-      padding: 5px 5px;
-      margin-right: 5px;
-      border-radius: 3px;
-    }
-    button {
-      color: #a4b0be;
-      font-size: 13px;
-    }
+	.Board__title {
+		font-size: 20px;
+		color: black;
+	}
 
-    button:hover,
-    button:focus {
-      background-color: #2ed573;
-      color: white;
-    }
-  }
+	form {
+		display: flex;
+		align-items: center;
+		input {
+			font-size: 15px;
+			border: none;
+			padding: 5px 5px;
+			margin-right: 5px;
+			border-radius: 3px;
+		}
+		button {
+			color: #a4b0be;
+			font-size: 13px;
+		}
 
-  button {
-    border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-    background-color: #dfe4ea; 
-    a {
-      text-decoration: none;
-      font-size: 15px;
-      color: #a4b0be;
-    }
-    a:hover,
-    a:focus {
-      color: white;
-    }
-  }
+		button:hover,
+		button:focus {
+			background-color: #2ed573;
+			color: white;
+		}
+	}
 
-  .Board_Home-btn:hover,
-  .Board_Home-btn:focus {
-    background-color: #3742fa;
-  }
+	button {
+		border: none;
+		border-radius: 3px;
+		padding: 5px 10px;
+		background-color: #dfe4ea;
+		a {
+			text-decoration: none;
+			font-size: 15px;
+			color: #a4b0be;
+		}
+		a:hover,
+		a:focus {
+			color: white;
+		}
+	}
 
-  .Board__delete-btn:hover,
-  .Board__delete-btn:focus {
-    background-color: #ff4757;
-  }
+	.Board_Home-btn:hover,
+	.Board_Home-btn:focus {
+		background-color: #3742fa;
+	}
+
+	.Board__delete-btn:hover,
+	.Board__delete-btn:focus {
+		background-color: #ff4757;
+	}
 }
 
 .Board_Home-btn {
-  margin-right: 1rem;
+	margin-right: 1rem;
 }
 
 .logout .logout__button {
-    border: none;
-    background-color: #dfe4ea;
-    border-radius: 3px;
-    color: white;
-    padding: 5px 10px;
-    font-size: 15px;
-    font-weight: 600;
-    display: inline-block;
+	border: none;
+	background-color: #dfe4ea;
+	border-radius: 3px;
+	color: white;
+	padding: 5px 10px;
+	font-size: 15px;
+	font-weight: 600;
+	display: inline-block;
 }
 
 .containers {
-  width: 100%;
-  display: -webkit-inline-box;
-  overflow-x: scroll;
-  white-space: nowrap;
-  .container {
-    background-color: #7bed9f;
-    padding: 10px 10px;
-    width: 100%;
-    height: 100%;
-    max-width: 235px;
-    margin : 1rem;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.24);
-    .container-title {
-      background-color: #27ae60;
-      padding: 2px 5px;
-      font-size: 22px;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    .container__title-input {
-      form {
-        display: flex;
-        input {
-          border: none;
-          color: white;
-          background-color: #27ae60;
-          padding: 2px 5px;
-          font-size: 22px;
-          border-radius: 3px;
-          width: 81%;
-        }
-        button {
-          display: block;
-          border: none;
-          border-radius: 3px;
-        }
-      }
-    }
-    .cards {
-      margin-top: 15px;
-      .allCard {
-        background-color: white;
-        border-radius: 3px;
-        padding: 5px 10px;
-        margin-top: 5px;
-        color: #240e00;
-        display: flex;
-        justify-content: space-between;
-        .card{
-          cursor: pointer;
-        }
-      }
-    }
+	width: 100%;
+	display: -webkit-inline-box;
+	overflow-x: scroll;
+	white-space: nowrap;
+	.container {
+		background-color: #7bed9f;
+		padding: 10px 10px;
+		width: 100%;
+		height: 100%;
+		max-width: 235px;
+		margin: 1rem;
+		color: white;
+		border-radius: 5px;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.24);
+		.container-title {
+			background-color: #27ae60;
+			padding: 2px 5px;
+			font-size: 22px;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+		.container__title-input {
+			form {
+				display: flex;
+				input {
+					border: none;
+					color: white;
+					background-color: #27ae60;
+					padding: 2px 5px;
+					font-size: 22px;
+					border-radius: 3px;
+					width: 81%;
+				}
+				button {
+					display: block;
+					border: none;
+					border-radius: 3px;
+				}
+			}
+		}
+		.cards {
+			margin-top: 15px;
+			.allCard {
+				background-color: white;
+				border-radius: 3px;
+				padding: 5px 10px;
+				margin-top: 5px;
+				color: #240e00;
+				display: flex;
+				justify-content: space-between;
+				.card {
+					cursor: pointer;
+				}
+			}
+		}
 
-    .card-Add {
-      border-radius: 3px;
-      padding: 2px 5px;
-      margin-top: 5px;
-    }
+		.card-Add {
+			border-radius: 3px;
+			padding: 2px 5px;
+			margin-top: 5px;
+		}
 
-    .card-Add:hover,
-    .card-Add:focus {
-      color: black;
-      background-color: #f5f6fa;
-      cursor: pointer;
-    }
+		.card-Add:hover,
+		.card-Add:focus {
+			color: black;
+			background-color: #f5f6fa;
+			cursor: pointer;
+		}
 
-    .card__Add-card{
-      margin-top: 5px;
-      .card__Add-card-input {
-        border: none;
-        width: 91.5%;
-        background-color: #ffffff;
-        border-radius: 3px;
-        padding: 5px 10px;
-        font-size: 15px;
-        color: #240e00;
-      }
-      .card__Add-card-buttons {
-        margin-top: 5px;
-        display: flex;
-        justify-content: space-between;
-        button {
-          border: none;
-          border-radius: 2px;
-          padding: 5px 10px;
-          font-size: 12px;
-          background-color: #f1f2f6;
-          color: #ced6e0;
-        }
+		.card__Add-card {
+			margin-top: 5px;
+			.card__Add-card-input {
+				border: none;
+				width: 91.5%;
+				background-color: #ffffff;
+				border-radius: 3px;
+				padding: 5px 10px;
+				font-size: 15px;
+				color: #240e00;
+			}
+			.card__Add-card-buttons {
+				margin-top: 5px;
+				display: flex;
+				justify-content: space-between;
+				button {
+					border: none;
+					border-radius: 2px;
+					padding: 5px 10px;
+					font-size: 12px;
+					background-color: #f1f2f6;
+					color: #ced6e0;
+				}
 
-        button:hover,
-        button:focus {
-          background-color: #f0932b;
-          color: white;
-          cursor: pointer;
-        }  
-      }
-    }
+				button:hover,
+				button:focus {
+					background-color: #f0932b;
+					color: white;
+					cursor: pointer;
+				}
+			}
+		}
 
-    .card__buttons {
-      margin-top: 15px;
-      width: 100%;
-      button{
-        border: none;
-        width: 100%;
-        padding: 5px;
-        border-radius: 3px;
-        font-size: 12px;
-        cursor: pointer;
-      }
-      button:hover,
-      button:focus {
-        background-color: #ffbe76;
-        color: white;
-      }
-    }
-  }
-  .Add-Container {
-    width: 100%;
-    max-width: 255px;
-    margin : 1rem;
-    .Add-a-list {
-    padding: 10px 10px;
-    color: white;
-    background-color: #9b59b6;
-    border-radius: 5px;
-    font-weight: 600;
-    }
-    form {
-      input {
-        border: none;
-        padding: 10px 10px;
-        color: white;
-        background-color: #9b59b6;
-        border-radius: 5px;
-        font-weight: 600;
-        font-size: 17px;
-        width: 92%;
-      }
-      input::placeholder {
-        color: white;
-        font-weight: 200;
-      }
-      .Add__buttons {
-        margin-top: 3px;
-        display: flex;
-        justify-content: space-between;
-        button {
-          border: none;
-          display: block;
-          background-color: #310246;
-          color: white;
-          padding: 5px 10px;
-          font-size: 12px;
-          border-radius: 3px;
-        }
-      }
-    }
-  }
+		.card__buttons {
+			margin-top: 15px;
+			width: 100%;
+			button {
+				border: none;
+				width: 100%;
+				padding: 5px;
+				border-radius: 3px;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			button:hover,
+			button:focus {
+				background-color: #ffbe76;
+				color: white;
+			}
+		}
+	}
+	.Add-Container {
+		width: 100%;
+		max-width: 255px;
+		margin: 1rem;
+		.Add-a-list {
+			padding: 10px 10px;
+			color: white;
+			background-color: #9b59b6;
+			border-radius: 5px;
+			font-weight: 600;
+		}
+		form {
+			input {
+				border: none;
+				padding: 10px 10px;
+				color: white;
+				background-color: #9b59b6;
+				border-radius: 5px;
+				font-weight: 600;
+				font-size: 17px;
+				width: 92%;
+			}
+			input::placeholder {
+				color: white;
+				font-weight: 200;
+			}
+			.Add__buttons {
+				margin-top: 3px;
+				display: flex;
+				justify-content: space-between;
+				button {
+					border: none;
+					display: block;
+					background-color: #310246;
+					color: white;
+					padding: 5px 10px;
+					font-size: 12px;
+					border-radius: 3px;
+				}
+			}
+		}
+	}
 }
 
 i {
-  color: #dfe4ea;
+	color: #dfe4ea;
 }
 
 i:hover,
 i:focus {
-  color: #4cd137;
-  cursor: pointer;
-};
+	color: #4cd137;
+	cursor: pointer;
+}

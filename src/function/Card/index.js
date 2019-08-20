@@ -4,9 +4,9 @@ import { API_URL } from '../../config';
 export const deleteCard = () => {};
 export const isActiveCard = (id, active) => {
   return axios.post(`${API_URL}/cards/isactive`, {
-    id: id,
-    isActive: !active // false면 true
-  })
+    id,
+    isActive: !active, // false면 true
+  });
 };
 
 export const completedCards = () => {
@@ -15,4 +15,4 @@ export const completedCards = () => {
 
 export const getCards = () => {
   return axios.get(`${API_URL}/cards`);
-}
+};

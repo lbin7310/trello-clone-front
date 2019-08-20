@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 import Board from '../components/Board/Board';
 import CardDescription from '../components/Board/CardDescription';
-import { Link, Redirect } from 'react-router-dom'
 import { API_URL } from '../config';
-import { updateBoard, deleteBoard } from '../function/BoardView'
+import { updateBoard, deleteBoard } from '../function/BoardView';
 import './BoardView.scss';
 
 class BoardView extends Component {
-  constructor (props) {
-    super (props)
-    this.state={
+  constructor(props) {
+    super(props);
+    this.state = {
       containers: [],
       cardTitle: '',
       cardDescription: '',
@@ -18,31 +18,30 @@ class BoardView extends Component {
       boardName: this.props.match.params.boardTitle,
       cardId: 0,
       containerId: 0,
-      toggle: false
-    }
+      toggle: false,
+    };
   }
 
   async componentDidMount() {
-    const { boardId } = this.state 
-    await fetch(`${API_URL}/container/${boardId}`)
+    const { boardId } = this.state;
+    await fetch(`${API_URL}/containers/${boardId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({
-          containers: [...json]
-        })
-      }
-    );
+          containers: [...json],
+        });
+      });
   }
 
-  onAddContainer = (container) => {
+  onAddContainer = container => {
     this.setState({
-      containers: container
-    })
-  }
+      containers: container,
+    });
+  };
 
-  getCardTitleAndDescription = ( title, description, info ) => {
+  getCardTitleAndDescription = (title, description, info) => {
     const { cardDescriptionDisplay } = this.state;
-    if (typeof description !== "string") {
+    if (typeof description !== 'string') {
       description = '';
     }
     this.setState({
@@ -50,113 +49,123 @@ class BoardView extends Component {
       cardDescription: description,
       cardDescriptionDisplay: !cardDescriptionDisplay,
       cardId: info.cardId,
-    })
-  }
+    });
+  };
 
-  onCreateDescription = ( description, ) => {
-    if (typeof description !== "string") {
+  onCreateDescription = description => {
+    if (typeof description !== 'string') {
       description = '';
     }
 
     this.setState({
       cardDescription: description,
-    })
-  }
+    });
+  };
 
   onToggleDescription = () => {
     const { cardDescriptionDisplay } = this.state;
     this.setState({
-      cardDescriptionDisplay: !cardDescriptionDisplay
-    })
-  }
+      cardDescriptionDisplay: !cardDescriptionDisplay,
+    });
+  };
 
-  onChangeTitle = (e) => {
+  onChangeTitle = e => {
     this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     const { boardId, boardName } = this.state;
     e.preventDefault();
-    updateBoard(boardId, boardName)
-  }
+    updateBoard(boardId, boardName);
+  };
 
-  onBoardNameToggle = (e) => {
-    const { toggle }=this.state;
+  onBoardNameToggle = () => {
+    const { toggle } = this.state;
     this.setState({
-      toggle: !toggle
-    })
-  }
+      toggle: !toggle,
+    });
+  };
 
   onDeleteBoard = () => {
     const { boardId } = this.state;
     deleteBoard(boardId);
-  }
+  };
 
   render() {
-    const { userName } = this.props.match.params
+    const { userName } = this.props.match.params;
 
     const { isLogin } = this.props;
 
-    const { containers,
-            cardTitle,
-            cardDescription,
-            cardDescriptionDisplay,
-            boardId,
-            containerId,
-            cardId,
-            boardName,
-            toggle } = this.state;
+    const {
+      containers,
+      cardTitle,
+      cardDescription,
+      cardDescriptionDisplay,
+      boardId,
+      containerId,
+      cardId,
+      boardName,
+      toggle,
+    } = this.state;
 
-    const { onAddContainer,
-            getCardTitleAndDescription,
-            onToggleDescription,
-            onCreateDescription,
-            onChangeTitle,
-            onSubmit,
-            onBoardNameToggle,
-            onDeleteBoard } = this;
+    const {
+      onAddContainer,
+      getCardTitleAndDescription,
+      onToggleDescription,
+      onCreateDescription,
+      onChangeTitle,
+      onSubmit,
+      onBoardNameToggle,
+      onDeleteBoard,
+    } = this;
 
-    if ( isLogin ) {
+    if (isLogin) {
       return (
         <div>
           <div className="Board_Nav">
-            <button className="Board_Home-btn">
-              <Link to={`/user/${userName}`} >
-                Boards
-              </Link>
+            <button className="Board_Home-btn" type="button">
+              <Link to={`/user/${userName}`}>Boards</Link>
             </button>
-            <div className="Board__title"
-              onClick={onBoardNameToggle} style={{display: toggle ? 'none' : ''}}
+            <div
+              role="presentation"
+              className="Board__title"
+              onClick={onBoardNameToggle}
+              style={{ display: toggle ? 'none' : '' }}
             >
               {boardName}
             </div>
-            <form onSubmit={onSubmit} style={{display: !toggle ? 'none' : ''}}>
-              <input 
+            <form
+              onSubmit={onSubmit}
+              style={{ display: !toggle ? 'none' : '' }}
+            >
+              <input
                 type="text"
                 name="boardName"
                 value={boardName}
                 onChange={onChangeTitle}
               />
-              <button type='submit' onClick={onBoardNameToggle} >수정</button>
+              <button type="submit" onClick={onBoardNameToggle}>
+                수정
+              </button>
             </form>
-            <button 
+            <button
               className="Board__delete-btn"
               onClick={onDeleteBoard}
+              type="button"
             >
-              <Link to={`/user/${userName}`}>
-                Board Delete
-              </Link>
+              <Link to={`/user/${userName}`}>Board Delete</Link>
             </button>
           </div>
-          <Board containers={containers}
+          <Board
+            containers={containers}
             onAddContainer={onAddContainer}
             getCardTitleAndDescription={getCardTitleAndDescription}
             boardId={boardId}
           />
           <div>
-            <CardDescription 
+            <CardDescription
               getCardTitleAndDescription={getCardTitleAndDescription}
               containerId={containerId}
               cardId={cardId}
@@ -168,10 +177,9 @@ class BoardView extends Component {
             />
           </div>
         </div>
-      )
-    } else {
-      return <Redirect push to="/login"/>
+      );
     }
+    return <Redirect push to="/login" />;
   }
 }
 

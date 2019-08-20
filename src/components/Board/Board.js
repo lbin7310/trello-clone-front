@@ -2,26 +2,28 @@ import React, { Component } from 'react';
 import Container from './Container';
 
 class Board extends Component {
-  constructor (props) {
-    super (props)
-    this.state={}
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
   render() {
-    const { containers,
-            onAddContainer,
-            getCardTitleAndDescription,
-            boardId } = this.props;
+    const {
+      containers,
+      onAddContainer,
+      getCardTitleAndDescription,
+      boardId,
+    } = this.props;
     return (
       <div>
-        <Container 
+        <Container
           boardId={boardId}
           containers={containers}
           onAddContainer={onAddContainer}
           getCardTitleAndDescription={getCardTitleAndDescription}
         />
       </div>
-    )
+    );
   }
 }
 
